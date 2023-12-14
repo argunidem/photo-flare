@@ -1,5 +1,4 @@
 import Link from "next/link";
-// import { calSans } from "@/app/fonts";
 import { buttonVariants } from "./ui/button";
 import { SwitchCamera } from "lucide-react";
 
@@ -14,13 +13,7 @@ function Logo() {
          })}
       >
          <SwitchCamera className='h-6 w-6 shrink-0 lg:hidden' />
-         <p
-            className={`font-semibold text-xl hidden lg:block 
-        `}
-            //   ${calSans.className}
-         >
-            PhotoFlare
-         </p>
+         <p className={`font-semibold text-xl hidden lg:block`}>PhotoFlare</p>
       </Link>
    );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import {
@@ -84,7 +85,7 @@ const MoreDropdown = () => {
 
                   <DropdownMenuItem
                      className='menuItem'
-                     // onClick={() => signOut()}
+                     onClick={() => signOut()}
                   >
                      <LogOut size={20} />
                      <p>Log out</p>
