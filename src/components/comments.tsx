@@ -58,7 +58,7 @@ function Comments({
             return (
                <div
                   key={i}
-                  className='text-sm flex items-center space-x-2 font-medium'
+                  className='text-sm flex items-center space-x-2'
                >
                   <Link
                      href={`/dashboard/${username}`}
@@ -66,7 +66,9 @@ function Comments({
                   >
                      {username}
                   </Link>
-                  <p>{comment.body}</p>
+                  <span className='font-medium dark:font-light dark:text-neutral-200'>
+                     {comment.body}
+                  </span>
                </div>
             );
          })}
