@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
-async function HomePage() {
+const HomePage = async () => {
    redirect("/dashboard");
-}
+};
 
 export default HomePage;

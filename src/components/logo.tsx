@@ -2,7 +2,7 @@ import Link from "next/link";
 import { buttonVariants } from "./ui/button";
 import { SwitchCamera } from "lucide-react";
 
-function Logo() {
+const Logo = () => {
    return (
       <Link
          href={"/dashboard"}
@@ -16,6 +16,6 @@ function Logo() {
          <p className={`font-semibold text-xl hidden lg:block`}>PhotoFlare</p>
       </Link>
    );
-}
+};
 
 export default Logo;

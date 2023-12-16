@@ -16,7 +16,7 @@ const LoginForm = () => {
    );
 };
 
-function LoginButton() {
+const LoginButton = () => {
    const { pending } = useFormStatus();
 
    return (
@@ -29,6 +29,6 @@ function LoginButton() {
          Log in with Google
       </Button>
    );
-}
+};
 
 export default LoginForm;

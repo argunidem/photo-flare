@@ -4,7 +4,7 @@ import {
    Heart,
    Home,
    MessageCircle,
-   PlusSquare,
+   PlusCircle,
    Search,
 } from "lucide-react";
 
@@ -36,6 +36,6 @@ export const links = [
    {
       name: "Create",
       href: "/dashboard/create",
-      icon: PlusSquare,
+      icon: PlusCircle,
    },
 ];
