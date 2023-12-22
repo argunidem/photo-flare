@@ -24,7 +24,7 @@ const ProfileLink = ({ user }: { user: User }) => {
       >
          <UserAvatar
             user={user}
-            className={`h-6 w-6 ${isActive && "border-2 border-white"}`}
+            className={`h-6 w-6 dark:border-2 border-slate-400`}
          />
 
          <p

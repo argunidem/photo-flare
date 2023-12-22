@@ -42,6 +42,11 @@ export const UserSchema = z.object({
    gender: z.string().optional(),
 });
 
+export const LoginSchema = z.object({
+   email: z.string().email(),
+   password: z.string(),
+});
+
 export const UpdateUser = UserSchema;
 export const DeleteUser = UserSchema.pick({ id: true });
 export const FollowUser = UserSchema.pick({ id: true });

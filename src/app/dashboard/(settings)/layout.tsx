@@ -36,7 +36,7 @@ function SettingsLayout({ children }: { children: React.ReactNode }) {
             </TabsList>
          </Tabs>
 
-         <div className='flex-1 ml-[200px] xl:ml-32 min-h-screen bg-white dark:bg-neutral-950'>
+         <div className='flex-1 ml-[200px] xl:ml-48 min-h-screen bg-white dark:bg-neutral-950'>
             {children}
          </div>
       </div>

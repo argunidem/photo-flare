@@ -1,8 +1,11 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/lib/prisma";
-import GoogleProvider from "next-auth/providers/google";
-import NextAuth, { getServerSession, type NextAuthOptions } from "next-auth";
 import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { getServerSession, type NextAuthOptions } from "next-auth";
+import prisma from "@/lib/prisma";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import bcrypt from "bcryptjs";
+import { v4 as uuid } from "uuid";
 
 export const config = {
    pages: {
@@ -13,6 +16,58 @@ export const config = {
       GoogleProvider({
          clientId: process.env.GOOGLE_CLIENT_ID!,
          clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      }),
+      CredentialsProvider({
+         name: "credentials",
+         credentials: {
+            email: { label: "email", type: "text" },
+            password: { label: "password", type: "password" },
+         },
+         async authorize(credentials) {
+            if (!credentials?.email || !credentials?.password) {
+               throw new Error("Invalid credentials");
+            }
+
+            const user = await prisma.user.findUnique({
+               where: {
+                  email: credentials.email,
+               },
+            });
+
+            const usernameTaken = await prisma.user.findUnique({
+               where: {
+                  username: credentials.email.split("@")[0],
+               },
+            });
+
+            const name = credentials.email.split("@")[0];
+            const username = usernameTaken ? `${name}-${uuid().slice(0, 6)}` : name;
+
+            if (!user) {
+               const user = await prisma.user.create({
+                  data: {
+                     email: credentials.email,
+                     hashedPassword: await bcrypt.hash(credentials.password, 10),
+                     name,
+                     username,
+                  },
+               });
+               return user;
+            }
+
+            if (!user.hashedPassword) throw new Error("Invalid credentials");
+
+            const isCorrectPassword = await bcrypt.compare(
+               credentials.password,
+               user.hashedPassword
+            );
+
+            if (!isCorrectPassword) {
+               throw new Error("Invalid credentials");
+            }
+
+            return user;
+         },
       }),
    ],
    session: {

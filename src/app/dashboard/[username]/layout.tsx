@@ -48,7 +48,7 @@ async function ProfileLayout({ children, params: { username } }: Props) {
                <ProfileAvatar user={profile}>
                   <UserAvatar
                      user={profile}
-                     className='w-20 h-20 md:w-36 md:h-36 cursor-pointer'
+                     className='border w-20 h-20 md:w-36 md:h-36 cursor-pointer'
                   />
                </ProfileAvatar>
 

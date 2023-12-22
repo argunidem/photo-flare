@@ -50,25 +50,26 @@ model Session {
 }
 
 model User {
-   id            String      @id @default(cuid())
-   name          String?
-   username      String?     @unique
-   bio           String?
-   website       String?
-   gender        String?
-   email         String?     @unique
-   emailVerified DateTime?
-   image         String?
-   createdAt     DateTime    @default(now()) @map(name: "created_at")
-   updatedAt     DateTime    @updatedAt @map(name: "updated_at")
-   posts         Post[]
-   saved         SavedPost[]
-   likes         Like[]
-   comments      Comment[]
-   followedBy    Follows[]   @relation("following")
-   following     Follows[]   @relation("follower")
-   accounts      Account[]
-   sessions      Session[]
+   id             String      @id @default(cuid())
+   name           String?
+   username       String?     @unique
+   bio            String?
+   website        String?
+   gender         String?
+   email          String?     @unique
+   emailVerified  DateTime?
+   image          String?
+   hashedPassword String?
+   createdAt      DateTime    @default(now()) @map(name: "created_at")
+   updatedAt      DateTime    @updatedAt @map(name: "updated_at")
+   posts          Post[]
+   saved          SavedPost[]
+   likes          Like[]
+   comments       Comment[]
+   followedBy     Follows[]   @relation("following")
+   following      Follows[]   @relation("follower")
+   accounts       Account[]
+   sessions       Session[]
 
    @@map(name: "users")
 }
