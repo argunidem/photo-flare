@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { User } from "next-auth";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "./ui/button";
-import UserAvatar from "./user-avatar";
+import UserAvatar from "@/components/user-avatar";
+import { buttonVariants } from "@/components/ui/button";
 
 const ProfileLink = ({ user }: { user: User }) => {
    const pathname = usePathname();
@@ -24,7 +24,7 @@ const ProfileLink = ({ user }: { user: User }) => {
       >
          <UserAvatar
             user={user}
-            className={`h-6 w-6 dark:border-2 border-slate-400`}
+            className='h-6 w-6 dark:border-2 border-slate-400'
          />
 
          <p

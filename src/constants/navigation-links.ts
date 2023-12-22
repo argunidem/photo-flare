@@ -12,7 +12,7 @@ export const links = [
    { name: "Home", href: "/dashboard", icon: Home },
    {
       name: "Search",
-      href: "/dashboard/search",
+      // href: "/dashboard/search",
       icon: Search,
       hideOnMobile: true,
    },

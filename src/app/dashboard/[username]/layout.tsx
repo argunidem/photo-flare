@@ -44,16 +44,16 @@ async function ProfileLayout({ children, params: { username } }: Props) {
       <>
          <ProfileHeader username={profile.username} />
          <div className='max-w-4xl mx-auto'>
-            <div className='flex gap-x-5 md:gap-x-10 px-4'>
+            <div className='flex justify-evenly gap-x-5 md:gap-x-10 px-4'>
                <ProfileAvatar user={profile}>
                   <UserAvatar
                      user={profile}
-                     className='border w-20 h-20 md:w-36 md:h-36 cursor-pointer'
+                     className='flex items-center justify-center cursor-pointer border w-20 h-20 md:w-36 md:h-36'
                   />
                </ProfileAvatar>
 
                <div className='md:px-10 space-y-4'>
-                  <div className='grid grid-cols-2 md:grid-cols-4 items-center gap-3'>
+                  <div className='grid grid-cols-2 md:grid-cols-4 items-center grid-flow-col gap-3'>
                      <p className='font-semibold text-xl'>{profile.username}</p>
                      {isCurrentUser ? (
                         <>

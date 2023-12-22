@@ -5,9 +5,11 @@ import { usePathname } from "next/navigation";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { links } from "@/constants/navigation-links";
+import { useSearch } from "@/store/use-search";
 
 const NavLinks = () => {
    const pathname = usePathname();
+   const { toggleSearchTab } = useSearch();
 
    return (
       <>
@@ -18,7 +20,8 @@ const NavLinks = () => {
             return (
                <Link
                   key={link.name}
-                  href={link.href}
+                  href={link.href ?? "#"}
+                  onClick={link.href ? undefined : () => toggleSearchTab()}
                   className={buttonVariants({
                      variant: isActive ? "secondary" : "ghost",
                      className: cn("navLink", { "hidden md:flex": link.hideOnMobile }),

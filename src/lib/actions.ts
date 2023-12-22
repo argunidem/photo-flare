@@ -426,3 +426,26 @@ export async function followUser(formData: FormData) {
       };
    }
 }
+
+export async function searchUsersByUsername(username: string) {
+   try {
+      const data = await prisma.user.findMany({
+         where: {
+            username: {
+               contains: username,
+               mode: "insensitive",
+            },
+         },
+         orderBy: {
+            createdAt: "desc",
+         },
+      });
+
+      console.log("users: ", data);
+
+      return data;
+   } catch (error) {
+      console.error("Database Error:", error);
+      throw new Error("Failed to search users");
+   }
+}
